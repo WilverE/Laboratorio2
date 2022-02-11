@@ -49,6 +49,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 32);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.Size = new System.Drawing.Size(715, 423);
             this.webBrowser1.TabIndex = 1;
             // 
@@ -119,6 +120,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AllowMerge = false;
             this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

@@ -19,7 +19,18 @@ namespace Laboratorio2
 
         private void Buscar_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(Buscador.Text);
+            //webBrowser1.Navigate(Buscador.Text); sirve solo para buscar al precionar el boton
+            string bus = " ";
+            if (Buscador.Text != null)
+                bus = Buscador.Text;
+            else if (Buscador.SelectedItem != null)
+                bus = Buscador.SelectedItem.ToString();
+            if (!bus.Contains("."))
+                bus = "https://www.google.com/search?gs_ssp=" + bus;
+            if (!bus.Contains("https://"))
+                bus = "https://" + bus;
+
+            webBrowser1.Navigate(new Uri(bus));
         }
 
         private void Regresar_Click(object sender, EventArgs e)
