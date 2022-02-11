@@ -55,6 +55,7 @@
             // 
             // Regresar
             // 
+            this.Regresar.BackColor = System.Drawing.SystemColors.MenuBar;
             this.Regresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Regresar.Image = ((System.Drawing.Image)(resources.GetObject("Regresar.Image")));
             this.Regresar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -65,6 +66,7 @@
             // 
             // Adelante
             // 
+            this.Adelante.BackColor = System.Drawing.SystemColors.MenuBar;
             this.Adelante.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Adelante.Image = ((System.Drawing.Image)(resources.GetObject("Adelante.Image")));
             this.Adelante.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -75,6 +77,7 @@
             // 
             // Recargar
             // 
+            this.Recargar.BackColor = System.Drawing.SystemColors.MenuBar;
             this.Recargar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Recargar.Image = ((System.Drawing.Image)(resources.GetObject("Recargar.Image")));
             this.Recargar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -85,6 +88,7 @@
             // 
             // Cerrar
             // 
+            this.Cerrar.BackColor = System.Drawing.SystemColors.MenuBar;
             this.Cerrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Cerrar.Image = ((System.Drawing.Image)(resources.GetObject("Cerrar.Image")));
             this.Cerrar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -95,11 +99,15 @@
             // 
             // Buscador
             // 
+            this.Buscador.BackColor = System.Drawing.SystemColors.Menu;
+            this.Buscador.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.Buscador.ForeColor = System.Drawing.SystemColors.Menu;
             this.Buscador.Name = "Buscador";
             this.Buscador.Size = new System.Drawing.Size(500, 32);
             // 
             // Buscar
             // 
+            this.Buscar.BackColor = System.Drawing.SystemColors.MenuBar;
             this.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Buscar.Image")));
             this.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -110,6 +118,7 @@
             // 
             // Home
             // 
+            this.Home.BackColor = System.Drawing.SystemColors.MenuBar;
             this.Home.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.Home.Image = ((System.Drawing.Image)(resources.GetObject("Home.Image")));
             this.Home.ImageTransparentColor = System.Drawing.Color.Magenta;

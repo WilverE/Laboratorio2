@@ -26,10 +26,12 @@ namespace Laboratorio2
             else if (Buscador.SelectedItem != null)
                 bus = Buscador.SelectedItem.ToString();
             if (!bus.Contains("."))
-                bus = "https://www.google.com/search?gs_ssp=" + bus;
+                bus = "https://www.google.com/search?q=" + bus;
             if (!bus.Contains("https://"))
                 bus = "https://" + bus;
 
+            Buscador.Items.Add(Buscador.Text);//para ir agregando la busqueda que hemos realizado
+            Buscador.Text = " "; //sirve para eliminar lo que se busco y la barra quede en blanco 
             webBrowser1.Navigate(new Uri(bus));
         }
 
