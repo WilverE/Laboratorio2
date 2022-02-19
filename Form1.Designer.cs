@@ -38,6 +38,8 @@
             this.Buscar = new System.Windows.Forms.ToolStripButton();
             this.Home = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.historial = new System.Windows.Forms.RichTextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(715, 423);
+            this.webBrowser1.Size = new System.Drawing.Size(747, 433);
             this.webBrowser1.TabIndex = 1;
             // 
             // Regresar
@@ -142,23 +144,44 @@
             this.Cerrar,
             this.Buscador,
             this.Buscar,
-            this.Home});
+            this.Home,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(719, 32);
+            this.toolStrip1.Size = new System.Drawing.Size(717, 32);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // historial
+            // 
+            this.historial.Location = new System.Drawing.Point(639, 51);
+            this.historial.Name = "historial";
+            this.historial.Size = new System.Drawing.Size(100, 96);
+            this.historial.TabIndex = 2;
+            this.historial.Text = "";
             // 
             // Navegador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 455);
+            this.ClientSize = new System.Drawing.Size(747, 465);
+            this.Controls.Add(this.historial);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Navegador";
             this.Text = "Navegador";
+            this.Load += new System.EventHandler(this.Navegador_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -176,6 +199,8 @@
         private System.Windows.Forms.ToolStripButton Buscar;
         private System.Windows.Forms.ToolStripButton Home;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.RichTextBox historial;
     }
 }
 
