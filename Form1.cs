@@ -13,30 +13,63 @@ namespace Laboratorio2
 {
     public partial class Navegador : Form
     {
+        List<Direcciones> direc = new List<Direcciones>();
         public Navegador()
         {
             InitializeComponent();
         }
-
+        private void Save(string fileName, string texto)
+        {
+            FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+            foreach (var p in direc)
+            {
+                writer.WriteLine(p.texto, p.veces, p.fecha);
+            }
+            writer.Close();
+        }
         private void Buscar_Click(object sender, EventArgs e)
         {
-            //webBrowser1.Navigate(Buscador.Text); sirve solo para buscar al precionar el boton
-            string bus = " ";
-            if (Buscador.Text != null)
-                bus = Buscador.Text;
-            else if (Buscador.SelectedItem != null)
-                bus = Buscador.SelectedItem.ToString();
-            if (!bus.Contains("."))
-                bus = "https://www.google.com/search?q=" + bus;
-            if (!bus.Contains("https://"))
-                bus = "https://" + bus;
+            int p = direc.FindIndex(t => t.texto == Buscador.Text);
+            if (p == -1)
+            {
+                //webBrowser1.Navigate(Buscador.Text); sirve solo para buscar al precionar el boton
+                string bus = " ";
+                if (Buscador.Text != null)
+                    bus = Buscador.Text;
+                else if (Buscador.SelectedItem != null)
+                    bus = Buscador.SelectedItem.ToString();
 
-            Buscador.Items.Add(Buscador.Text);//para ir agregando la busqueda que hemos realizado
-            Buscador.Text = " "; //sirve para eliminar lo que se busco y la barra quede en blanco 
-            webBrowser1.Navigate(new Uri(bus));
-            Save(@"C:\Users\LuisDa GóMo777\Desktop\Mesoamericana\Historial.txt", Buscador.Text);
+                if (!bus.Contains("."))
+                    bus = "https://www.google.com/search?q=" + bus;
 
+                if (!bus.Contains("https://"))
+                    bus = "https://" + bus;
 
+                webBrowser1.Navigate(new Uri(bus));
+                Buscador.Items.Add(bus);//para ir agregando la busqueda que hemos realizado
+                //Buscador.Text = " "; //sirve para eliminar lo que se busco y la barra quede en blanco 
+                Direcciones dire = new Direcciones();
+                dire.fecha = DateTime.Now;
+                dire.veces++;
+                dire.texto = Buscador.Text;
+
+                direc.Add(dire);
+                Save("H.txt", dire.texto);
+            }
+            else
+            {
+                direc[p].veces++;
+                direc[p].fecha = DateTime.Now;
+            }
+            mostrar(); 
+        }
+        private void mostrar()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Refresh();
+            dataGridView1.DataSource = direc;
+            dataGridView1.Refresh();
         }
 
         private void Regresar_Click(object sender, EventArgs e)
@@ -68,14 +101,7 @@ namespace Laboratorio2
         {
 
         }
-        private void Save(string fileName, string texto)
-        {
-            FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter writer = new StreamWriter(stream);
-            writer.WriteLine(texto);
-            writer.Close();
-        }
-
+        
         private void buscarHistorialToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -85,26 +111,42 @@ namespace Laboratorio2
         {
 
         }
+        private void Leer(string fileName)
+        {
+            FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            StreamReader reader = new StreamReader(stream);
+
+            while (reader.Peek() > -1)
+            {
+                Buscador.Items.Add(reader.ReadLine());
+            }
+
+            reader.Close();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Leer("H.txt");
+        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.InitialDirectory = @"C:\Users\LuisDa GóMo777\Desktop\Mesoamericana\Historial.txt";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            direc = direc.OrderBy(p => p.fecha).ToList();
+            mostrar();
+        }
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            string t = TextBox1.Text;
+            direc.RemoveAll(p => p.texto == t);
+
+            mostrar();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
             {
-                string fileName = openFileDialog1.FileName;
-                FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                StreamReader reader = new StreamReader(stream);
-
-                while (reader.Peek() > -1)
-
-                {
-                    historial.AppendText(reader.ReadLine());
-                }
-
-                reader.Close();
+                direc = direc.OrderByDescending(p => p.veces).ToList();
+                mostrar();
             }
         }
     }
